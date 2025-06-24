@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FrameCraft Studios - Video Portfolio</title>
+    <title>Astria Vision - Web Development Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -176,6 +176,13 @@
             transition: all 0.3s ease;
         }
 
+        .video-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
         .video-overlay {
             position: absolute;
             top: 0;
@@ -329,6 +336,25 @@
                 min-height: 250px;
             }
         }
+
+        .add-portfolio-btn {
+            display: block;
+            margin: 0 auto 30px auto;
+            padding: 14px 36px;
+            background: linear-gradient(45deg, #4ecdc4, #ff6b6b);
+            border: none;
+            border-radius: 30px;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(78, 205, 196, 0.15);
+            transition: all 0.3s ease;
+        }
+        .add-portfolio-btn:hover {
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 8px 32px rgba(255, 107, 107, 0.18);
+        }
     </style>
 </head>
 <body>
@@ -336,89 +362,34 @@
 
     <header>
         <nav>
-            <div class="logo">FrameCraft Studios</div>
+            <div class="logo">Astria Vision</div>
             <a href="../index.html" class="contact-btn">Go to Home</a>
         </nav>
     </header>
 
     <main class="main-content">
         <section class="intro-section">
-            <h1>Our Video Portfolio</h1>
-            <p>Discover our latest video editing work across various industries. From cinematic storytelling to engaging social content, we bring creativity and technical excellence to every project.</p>
+            <h1>Our Web Development Portfolio</h1>
+            <p>Discover our latest web development projects across various industries. From responsive websites to dynamic web applications, we bring innovative solutions and technical excellence to every project.</p>
         </section>
 
+        <a href="https://kunal-portfolio-lemon.vercel.app/" target="_blank" style="text-decoration: none;"><button class="add-portfolio-btn">Explore All Projects</button></a>
         <section class="portfolio-section">
             <div class="portfolio-grid">
                 <div class="video-card">
-                    <video autoplay muted loop>
-                        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-overlay">
-                        <h3>Tech Startup Launch</h3>
-                        <p>Dynamic promotional video showcasing innovative product features with custom motion graphics and seamless transitions.</p>
-                        <span class="category">Commercial</span>
-                    </div>
-                    <div class="play-button">▶</div>
+                    <img src="/utils/portVideos/webPort/1.png" alt="Web Portfolio Image">
                 </div>
-
                 <div class="video-card">
-                    <video autoplay muted loop>
-                        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-overlay">
-                        <h3>Fashion Brand Campaign</h3>
-                        <p>Cinematic fashion video with advanced color grading, dramatic lighting effects, and artistic visual storytelling.</p>
-                        <span class="category">Fashion</span>
-                    </div>
-                    <div class="play-button">▶</div>
+                    <img src="/utils/portVideos/webPort/2.png" alt="Web Portfolio Image">
                 </div>
-
                 <div class="video-card">
-                    <video autoplay muted loop>
-                        <source src="https://drive.google.com/drive/folders/1tEUblS7WLUwuhluu1OmLfKLw7jPAyfrz?usp=drive_link" type="video/mp4">
-                    </video>
-                    <div class="video-overlay">
-                        <h3>Travel Documentary</h3>
-                        <p>Immersive travel storytelling featuring stunning drone footage, time-lapse sequences, and cultural narratives.</p>
-                        <span class="category">Documentary</span>
-                    </div>
-                    <div class="play-button">▶</div>
+                    <img src="/utils/portVideos/webPort/3.png" alt="Web Portfolio Image">
                 </div>
-
                 <div class="video-card">
-                    <video autoplay muted loop>
-                        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-overlay">
-                        <h3>Music Video Production</h3>
-                        <p>Creative music video with synchronized effects, artistic visuals, and innovative editing techniques that match the rhythm.</p>
-                        <span class="category">Music</span>
-                    </div>
-                    <div class="play-button">▶</div>
+                    <img src="/utils/portVideos/webPort/4.png" alt="Web Portfolio Image">
                 </div>
-
                 <div class="video-card">
-                    <video autoplay muted loop>
-                        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-overlay">
-                        <h3>Social Media Series</h3>
-                        <p>Viral social content optimized for multiple platforms with trending effects, quick cuts, and engaging storytelling.</p>
-                        <span class="category">Social Media</span>
-                    </div>
-                    <div class="play-button">▶</div>
-                </div>
-
-                <div class="video-card">
-                    <video autoplay muted loop>
-                        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-overlay">
-                        <h3>Corporate Training</h3>
-                        <p>Professional training modules with clear graphics, animated explanations, and engaging presentation techniques.</p>
-                        <span class="category">Corporate</span>
-                    </div>
-                    <div class="play-button">▶</div>
+                    <img src="/utils/portVideos/webPort/5.png" alt="Web Portfolio Image">
                 </div>
             </div>
         </section>
@@ -463,13 +434,6 @@
             });
         });
 
-        // Smooth scrolling for contact button
-        document.querySelector('.contact-btn').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelector('#contact').scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
 
         // Initialize particles
         createParticles();
