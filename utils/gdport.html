@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrameCraft Studios - Video Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated background particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) translateX(0px); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) translateX(100px); opacity: 0; }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: logoGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes logoGlow {
+            0% { filter: brightness(1); }
+            100% { filter: brightness(1.2) drop-shadow(0 0 20px rgba(255, 107, 107, 0.3)); }
+        }
+
+        .contact-btn {
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 120px;
+            min-height: 100vh;
+            position: relative;
+            z-index: 10;
+        }
+
+        .intro-section {
+            text-align: center;
+            padding: 60px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .intro-section h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ffffff, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textShine 3s ease-in-out infinite;
+        }
+
+        @keyframes textShine {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .intro-section p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        /* Portfolio Grid */
+        .portfolio-section {
+            padding: 40px 20px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .video-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            aspect-ratio: 16/9;
+            cursor: pointer;
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .video-card video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .video-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                135deg, 
+                rgba(255, 107, 107, 0.8) 0%, 
+                rgba(78, 205, 196, 0.8) 100%
+            );
+            opacity: 0;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .video-card:hover .video-overlay {
+            opacity: 1;
+        }
+
+        .video-overlay h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .video-overlay p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.4;
+        }
+
+        .video-overlay .category {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Play button overlay */
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #333;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .video-card:hover .play-button {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+            padding: 80px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-section p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .contact-item {
+            text-align: center;
+        }
+
+        .contact-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #4ecdc4;
+        }
+
+        .contact-item p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .intro-section h1 {
+                font-size: 2.5rem;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            header {
+                padding: 15px 20px;
+            }
+            
+            .logo {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .video-card {
+                min-height: 250px;
+            }
+        }
+
+        .add-portfolio-btn {
+            display: block;
+            margin: 0 auto 30px auto;
+            padding: 14px 36px;
+            background: linear-gradient(45deg, #4ecdc4, #ff6b6b);
+            border: none;
+            border-radius: 30px;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(78, 205, 196, 0.15);
+            transition: all 0.3s ease;
+        }
+        .add-portfolio-btn:hover {
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 8px 32px rgba(255, 107, 107, 0.18);
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+
+    <header>
+        <nav>
+            <div class="logo">Astria Vision</div>
+            <a href="../index.html" class="contact-btn">Go to Home</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section class="intro-section">
+            <h1>Our Graphic Design Portfolio</h1>
+            <p>Discover our latest graphic design work across various industries. From cinematic storytelling to engaging social content, we bring creativity and technical excellence to every project.</p>
+        </section>
+
+        <a href="https://drive.google.com/drive/folders/1tEUblS7WLUwuhluu1OmLfKLw7jPAyfrz?usp=drive_link" target="_blank" style="text-decoration: none;"><button class="add-portfolio-btn">Explore All Projects</button></a>
+        <section class="portfolio-section">
+            <div class="portfolio-grid">
+                <div class="video-card">
+                    <img src="/utils/portVideos/praphicdesign/M_wsl4Ohgto-HD.jpg" alt="Graphic Design Portfolio Image">
+                </div>
+                <div class="video-card">
+                    <img src="/utils/portVideos/praphicdesign/62aILrBoI-E-HD.jpg" alt="Graphic Design Portfolio Image">
+                </div>
+                <div class="video-card">
+                    <img src="/utils/portVideos/praphicdesign/iqrJQ2uAPZY-HD.jpg" alt="Graphic Design Portfolio Image">
+                </div>
+                <div class="video-card">
+                    <img src="/utils/portVideos/praphicdesign/3xT6K_14XiY-HD.jpg" alt="Graphic Design Portfolio Image">
+                </div>
+                <div class="video-card">
+                    <img src="/utils/portVideos/praphicdesign/otIJ5pd9H64-HD (1).jpg" alt="Graphic Design Portfolio Image">
+                </div>
+                <div class="video-card">
+                    <img src="/utils/portVideos/praphicdesign/otIJ5pd9H64-HD.jpg" alt="Graphic Design Portfolio Image">
+                </div>
+                <div class="video-card">
+                    <img src="/utils/portVideos/praphicdesign/YS5B1djw1MY-HD.jpg" alt="Graphic Design Portfolio Image">
+                </div>
+                <div class="video-card">
+                    <img src="/utils/portVideos/praphicdesign/EpvTZZF1KPg-HD.jpg" alt="Graphic Design Portfolio Image">
+                </div>
+                <div class="video-card">
+                    <img src="/utils/portVideos/praphicdesign/AfM0Yy99Tj4-HD.jpg" alt="Graphic Design Portfolio Image">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Create animated particles
+        function createParticles() {
+            const particles = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particles.appendChild(particle);
+            }
+        }
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.08)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.05)';
+            }
+        });
+
+        // Video hover effects
+        document.querySelectorAll('.video-card').forEach(card => {
+            const video = card.querySelector('video');
+            
+            card.addEventListener('mouseenter', () => {
+                video.style.transform = 'scale(1.05)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                video.style.transform = 'scale(1)';
+            });
+        });
+
+
+        // Initialize particles
+        createParticles();
+
+        // Animate cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.video-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
